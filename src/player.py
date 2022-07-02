@@ -33,11 +33,12 @@ class player:
         ####################
         # players movement
         ####################
+        # TODO need to change the speed of the player based on x_axis
         if self.player_x < 0:
             self.player_x = self.x_axis - self.player_size
         elif key_pressed[pygame.K_a] or key_pressed[pygame.K_LEFT]:
             self.player_x -= 5
         elif self.player_x > self.x_axis - self.player_size:
-            self.player_x = 25
+            self.player_x = self.player_size
         elif key_pressed[pygame.K_d] or key_pressed[pygame.K_RIGHT]:
             self.player_x += 5
