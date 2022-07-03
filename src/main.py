@@ -6,8 +6,7 @@ pygame.init()
 ####################
 # colours
 ###################
-white = (255, 255, 255)
-black = (0, 0, 0)
+black = (10, 10, 10)
 
 ####################
 # pygame variables
@@ -32,14 +31,14 @@ def main():
     # player object
     ####################
     player = spaceship(
-        screen, white, x_axis, y_axis
+        screen, x_axis, y_axis
     )
 
     ####################
     # laser object
     ####################
     player_laser = laser(
-        screen, white, y_axis
+        screen, y_axis
     )
 
     run_game = True
