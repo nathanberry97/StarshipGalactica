@@ -4,11 +4,6 @@ from laser import laser
 pygame.init()
 
 ####################
-# colours
-###################
-black = (10, 10, 10)
-
-####################
 # pygame variables
 ####################
 screen_size = (1280, 720)
@@ -41,6 +36,14 @@ def main():
         screen, y_axis
     )
 
+    ####################
+    # background vars
+    ####################
+    background = pygame.image.load('assets/backgroud.png').convert()
+    background_y_axis = [
+        0, -720, -1440
+    ]
+
     run_game = True
     while run_game:
         for event in pygame.event.get():
@@ -50,7 +53,12 @@ def main():
         ####################
         # game logic
         ####################
-        screen.fill(black)
+        for background_update in range(len(background_y_axis)):
+            screen.blit(background, [0, background_y_axis[background_update]])
+            background_y_axis[background_update] += 1.5
+            if background_y_axis[background_update] > 720:
+                background_y_axis[background_update] = -1440
+
         key_pressed = pygame.key.get_pressed()
 
         player.create_player()

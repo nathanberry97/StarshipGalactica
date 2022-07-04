@@ -13,7 +13,7 @@ class player:
         self.ship_sprite = (
             pygame.image.load('assets/spaceship.png').convert_alpha()
         )
-        self.player_size = 45
+        self.player_size = 75
         self.player_x = x_axis / 100 * 47
         self.player_y = y_axis / 100 * 85
 
@@ -29,12 +29,12 @@ class player:
         ####################
         # players movement
         ####################
-        if self.player_x < -50:
-            self.player_x = self.x_axis - self.player_size
+        if self.player_x < 0:
+            self.player_x = 0
         elif key_pressed[pygame.K_a] or key_pressed[pygame.K_LEFT]:
             self.player_x -= 5
         elif self.player_x > self.x_axis - self.player_size:
-            self.player_x = -self.player_size
+            self.player_x = self.x_axis - self.player_size
         elif key_pressed[pygame.K_d] or key_pressed[pygame.K_RIGHT]:
             self.player_x += 5
 
