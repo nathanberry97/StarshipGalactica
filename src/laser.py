@@ -12,7 +12,7 @@ class laser:
         self.laser_sprite = (
             pygame.image.load('assets/laser.png').convert_alpha()
         )
-        self.laser = [[]]
+        self.laser = []
 
         self.bullet_next_tick = 0
         self.bullet_interval = 400
@@ -25,12 +25,15 @@ class laser:
         # add laser
         ####################
         tick = pygame.time.get_ticks()
-        if key_pressed[pygame.K_LCTRL] or key_pressed[pygame.K_SPACE]:
-            if tick > self.bullet_next_tick:
-                self.bullet_next_tick = tick + self.bullet_interval
-                self.laser.append(
-                    laser_coordinates
-                )
+
+        if (key_pressed[pygame.K_LCTRL] or
+                key_pressed[pygame.K_SPACE] and
+                tick > self.bullet_next_tick):
+
+            self.bullet_next_tick = tick + self.bullet_interval
+            self.laser.append(
+                laser_coordinates
+            )
 
     def move_laser(self):
         ####################
@@ -38,17 +41,15 @@ class laser:
         ####################
         range_laser = len(self.laser)
 
-        if range_laser > 1:
-            index = 0
+        if range_laser > 0:
             for bullet in self.laser:
-                # first array is emtpy, here to prevent an error
-                if index != 0:
-                    self.display.blit(
-                        self.laser_sprite, (bullet[0], bullet[1])
-                    )
-                    # decreasing lasers x axis
-                    bullet[1] -= 5
-                    if bullet[1] <= 0:
-                        self.laser.remove(self.laser[0])
-                else:
-                    index += 1
+                self.display.blit(
+                    self.laser_sprite, (bullet[0], bullet[1])
+                )
+                # decreasing lasers x axis
+                bullet[1] -= 5
+                if bullet[1] <= 0:
+                    self.laser.remove(self.laser[0])
+
+        # return laser coordinates
+        return(self.laser)
