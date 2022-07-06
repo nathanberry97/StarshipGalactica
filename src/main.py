@@ -97,9 +97,9 @@ def main():
         player_laser.create_laser(key_pressed, player_x_axis)
         laser_coordinates = player_laser.move_laser()
 
-        for test in enemies:
-            test.create_enemy()
-            enemy_count = test.move_enemy(enemy_direction)
+        for alien in enemies:
+            alien.create_enemy()
+            enemy_count = alien.move_enemy(enemy_direction)
 
         if enemy_count == 120:
             enemy_direction = 0
