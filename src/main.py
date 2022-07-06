@@ -40,14 +40,18 @@ def main():
     )
 
     ####################
-    # enemy objects
+    # alien vars
     ####################
-    enemies = []
     enemy_x_axis = 100
     enemy_y_axis = y_axis / 100 * 10
-    enemy_direction = 1
-    enemy_count = 0
+    enemy_direction = 1  # tells alien class to move right (1) or left (0)
+    enemy_count = 0  # needed for a check for alien movement
     amount_of_aliens = 23
+
+    ####################
+    # alien objects
+    ####################
+    enemies = []
 
     for create_aliens in range(amount_of_aliens):
         enemies.append(enemy(screen, enemy_x_axis, enemy_y_axis))
