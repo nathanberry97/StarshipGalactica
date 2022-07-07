@@ -17,6 +17,7 @@ class enemy:
         self.display.blit(
             self.enemy_sprite, enemy_coordinates
         )
+        return(enemy_coordinates)
 
     def move_enemy(self, direction):
         if direction == 1:

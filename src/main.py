@@ -51,10 +51,14 @@ def main():
     ####################
     # alien objects
     ####################
-    enemies = []
+    enemies = {}
+    index = 1
 
     for create_aliens in range(amount_of_aliens):
-        enemies.append(enemy(screen, enemy_x_axis, enemy_y_axis))
+        enemies['alien{0}'.format(index)] = (
+            enemy(screen, enemy_x_axis, enemy_y_axis)
+        )
+
         enemy_x_axis += 140
 
         if create_aliens == 7:
@@ -64,6 +68,8 @@ def main():
         elif create_aliens == 14:
             enemy_x_axis = 100
             enemy_y_axis = y_axis / 100 * 30
+
+        index += 1
 
     ####################
     # background vars
@@ -97,9 +103,14 @@ def main():
         player_laser.create_laser(key_pressed, player_x_axis)
         laser_coordinates = player_laser.move_laser()
 
-        for alien in enemies:
-            alien.create_enemy()
+        alien_data = {}
+        for alien_key in enemies:
+            alien = enemies[alien_key]
+
             enemy_count = alien.move_enemy(enemy_direction)
+            enemy_coordinates = alien.create_enemy()
+
+            alien_data[alien_key] = enemy_coordinates
 
         if enemy_count == 120:
             enemy_direction = 0
@@ -111,4 +122,5 @@ def main():
     pygame.quit()
 
 
-main()
+if __name__ == '__main__':
+    main()
