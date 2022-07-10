@@ -53,3 +53,6 @@ class laser:
 
         # return laser coordinates
         return(self.laser)
+
+    def remove_laser(self, laser_index):
+        self.laser.remove(self.laser[laser_index])

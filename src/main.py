@@ -112,6 +112,24 @@ def main():
 
             alien_data[alien_key] = enemy_coordinates
 
+        if laser_coordinates:
+            laser_index = 0
+            for laser_shot in laser_coordinates:
+                shot_x = laser_shot[0]
+                shot_y = laser_shot[1]
+                for alien_dict in alien_data:
+                    alien_x = alien_data[alien_dict][0]
+                    alien_y = alien_data[alien_dict][1]
+                    if (
+                        shot_x > alien_x and
+                        shot_x < alien_x + 75 and
+                        shot_y > alien_y + 20 and
+                        shot_y < alien_y + 75
+                    ):
+                        enemies.pop(alien_dict)
+                        player_laser.remove_laser(laser_index)
+                laser_index += 1
+
         if enemy_count == 120:
             enemy_direction = 0
         elif enemy_count == 0:
