@@ -31,11 +31,11 @@ class player:
         ####################
         if self.player_x < 0:
             self.player_x = 0
-        elif key_pressed[pygame.K_a] or key_pressed[pygame.K_LEFT]:
+        elif key_pressed[pygame.K_a]:
             self.player_x -= 5
         elif self.player_x > self.x_axis - self.player_size:
             self.player_x = self.x_axis - self.player_size
-        elif key_pressed[pygame.K_d] or key_pressed[pygame.K_RIGHT]:
+        elif key_pressed[pygame.K_d]:
             self.player_x += 5
 
         return(self.player_x)

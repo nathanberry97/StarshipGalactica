@@ -56,7 +56,7 @@ def main():
 
     for create_aliens in range(amount_of_aliens):
         enemies['alien{0}'.format(index)] = (
-            enemy(screen, enemy_x_axis, enemy_y_axis)
+            enemy(screen, enemy_x_axis, enemy_y_axis, create_aliens)
         )
 
         enemy_x_axis += 140

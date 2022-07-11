@@ -15,7 +15,7 @@ class laser:
         self.laser = []
 
         self.bullet_next_tick = 0
-        self.bullet_interval = 400
+        self.bullet_interval = 800
         self.laser_y_axis = y_axis / 100 * 82.5
 
     def create_laser(self, key_pressed, player_x_axis):
@@ -26,9 +26,12 @@ class laser:
         ####################
         tick = pygame.time.get_ticks()
 
-        if (key_pressed[pygame.K_LCTRL] or
-                key_pressed[pygame.K_SPACE] and
-                tick > self.bullet_next_tick):
+        if (
+            key_pressed[pygame.K_UP] and
+            tick > self.bullet_next_tick or
+            key_pressed[pygame.K_SPACE] and
+            tick > self.bullet_next_tick
+        ):
 
             self.bullet_next_tick = tick + self.bullet_interval
             self.laser.append(
@@ -49,10 +52,12 @@ class laser:
                 # decreasing lasers x axis
                 bullet[1] -= 5
                 if bullet[1] <= 0:
-                    self.laser.remove(self.laser[0])
+                    self.remove_laser(0)
 
         # return laser coordinates
         return(self.laser)
 
     def remove_laser(self, laser_index):
-        self.laser.remove(self.laser[laser_index])
+        self.laser.remove(
+            self.laser[laser_index]
+        )
